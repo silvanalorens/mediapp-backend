@@ -3,6 +3,7 @@ package com.mitocode.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -36,4 +37,7 @@ public class Patient {
 
     @Column(length = 55, nullable = false)
     private String email;
+
+    @OneToMany(mappedBy = "patient", cascade = {CascadeType.ALL}, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<VitalSign> signs;
 }

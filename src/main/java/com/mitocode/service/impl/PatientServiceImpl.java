@@ -1,6 +1,7 @@
 package com.mitocode.service.impl;
 
 import com.mitocode.model.Patient;
+import com.mitocode.model.VitalSign;
 import com.mitocode.repo.IGenericRepo;
 import com.mitocode.repo.IPatientRepo;
 import com.mitocode.service.IPatientService;
@@ -25,5 +26,13 @@ public class PatientServiceImpl extends CRUDImpl<Patient, Integer> implements IP
     @Override
     public Page<Patient> listPage(Pageable pageable) {
         return repo.findAll(pageable);
+    }
+
+    @Override
+    public Patient saveTransactional(Patient patient, List<VitalSign> signs) {
+        repo.save(patient);
+        signs.forEach(vs -> repo.saveSign(patient.getIdPatient(), vs.getIdVitalSign()));
+
+        return patient;
     }
 }
