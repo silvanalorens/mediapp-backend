@@ -1,7 +1,6 @@
 package com.mitocode.service.impl;
 
 import com.mitocode.model.Patient;
-import com.mitocode.model.VitalSign;
 import com.mitocode.repo.IGenericRepo;
 import com.mitocode.repo.IPatientRepo;
 import com.mitocode.service.IPatientService;
@@ -9,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class PatientServiceImpl extends CRUDImpl<Patient, Integer> implements IPatientService {
@@ -28,11 +25,5 @@ public class PatientServiceImpl extends CRUDImpl<Patient, Integer> implements IP
         return repo.findAll(pageable);
     }
 
-    @Override
-    public Patient saveTransactional(Patient patient, List<VitalSign> signs) {
-        repo.save(patient);
-        signs.forEach(vs -> repo.saveSign(patient.getIdPatient(), vs.getIdVitalSign()));
 
-        return patient;
-    }
 }

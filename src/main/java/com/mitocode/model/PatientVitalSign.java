@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class VitalSign {
+public class PatientVitalSign {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
