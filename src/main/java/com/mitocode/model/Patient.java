@@ -38,6 +38,6 @@ public class Patient {
     @Column(length = 55, nullable = false)
     private String email;
 
-    @OneToMany(mappedBy = "patient", cascade = {CascadeType.ALL}, orphanRemoval = true) //, fetch = FetchType.EAGER
-    private List<PatientVitalSign> signs;
+    //@OneToMany(mappedBy = "patient", cascade = {CascadeType.ALL}, orphanRemoval = true,  fetch = FetchType.EAGER) //
+    //private List<PatientVitalSign> signs;
 }

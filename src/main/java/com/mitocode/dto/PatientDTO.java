@@ -1,9 +1,11 @@
 package com.mitocode.dto;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -30,4 +32,7 @@ public class PatientDTO {
 
     @Email
     private String email;
+
+ //   @JsonManagedReference
+ //   private List<PatientVitalSignDTO> signs;
 }

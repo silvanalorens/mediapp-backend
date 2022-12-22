@@ -20,7 +20,7 @@ public class PatientVitalSign {
     private Integer idVitalSign;
 
     @Column(nullable = false) //yyyy-mm-ddTHH:mm:ss
-    private LocalDateTime checkDate;
+    private LocalDateTime signDate;
 
     @Column(nullable = false)
     private String temperature;
