@@ -1,20 +1,17 @@
 package com.mitocode.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.mitocode.model.Patient;
 import lombok.*;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class PatientVitalSignDTO {
+public class PatientSignsDTO {
 
 
     @EqualsAndHashCode.Include
@@ -33,7 +30,11 @@ public class PatientVitalSignDTO {
     @NotNull
     private String respiratory;
 
+    private Integer patientIdPatient;
 
-    @JsonBackReference
-    private PatientDTO patient;
+    private String patientFirstName;
+
+    private String patientLastName;
+
+
 }

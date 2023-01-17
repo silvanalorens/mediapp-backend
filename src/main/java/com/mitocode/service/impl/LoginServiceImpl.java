@@ -25,4 +25,11 @@ public class LoginServiceImpl implements ILoginService{
     public void changePassword(String password, String username) {
         repo.changePassword(bcrypt.encode(password), username);
     }
+
+    @Override
+    public User findPerfil(String username) {
+        return null;
+    }
+
+
 }

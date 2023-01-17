@@ -1,15 +1,22 @@
 package com.mitocode.controller;
 
 
+
+import com.mitocode.dto.PatientDTO;
+import com.mitocode.dto.PatientSignsDTO;
 import com.mitocode.dto.PatientVitalSignDTO;
 import com.mitocode.exception.ModelNotFoundException;
 
+import com.mitocode.model.Patient;
 import com.mitocode.model.PatientVitalSign;
 
 import com.mitocode.service.IPatientSignService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +24,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,9 +45,15 @@ public class PatientVitalSignController {
     private ModelMapper mapper;
 
     @GetMapping
-    public ResponseEntity<List<PatientVitalSignDTO>> findAll(){
+    public ResponseEntity<List<PatientSignsDTO>> findAll(){
 
-        List<PatientVitalSignDTO> list = serviceSigns.findAll().stream().map(p -> mapper.map(p, PatientVitalSignDTO.class)).collect(Collectors.toList());
+        //con mapper
+
+        List<PatientSignsDTO> list = serviceSigns.findAll().stream().map(
+                p -> mapper.map(p, PatientSignsDTO.class)
+        ).collect(Collectors.toList());
+
+
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
@@ -77,7 +94,12 @@ public class PatientVitalSignController {
     }
 
 
+    @GetMapping("/pageable")
+    public ResponseEntity<Page<PatientVitalSignDTO>> listPage(Pageable pageable){
+        Page<PatientVitalSignDTO> page = serviceSigns.listPage(pageable).map(p->mapper.map(p, PatientVitalSignDTO.class));
 
+        return new ResponseEntity<>(page, HttpStatus.OK);
+    }
 
 
 

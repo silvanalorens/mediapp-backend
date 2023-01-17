@@ -31,7 +31,7 @@ public class PatientVitalSign {
     @Column(nullable = false)
     private String respiratory;
 
-    @ManyToOne
+    @ManyToOne //(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_patient", nullable = false, foreignKey = @ForeignKey(name = "FK_PATIENT_SIGN"))
     private Patient patient;
 }

@@ -1,6 +1,8 @@
 package com.mitocode.model;
 
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.List;
@@ -38,6 +40,8 @@ public class Patient {
     @Column(length = 55, nullable = false)
     private String email;
 
-    //@OneToMany(mappedBy = "patient", cascade = {CascadeType.ALL}, orphanRemoval = true,  fetch = FetchType.EAGER) //
-    //private List<PatientVitalSign> signs;
+    //@Column(nullable = true)
+    @OneToMany(mappedBy = "patient", cascade = {CascadeType.ALL}, orphanRemoval = true,fetch = FetchType.EAGER) //,,
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<PatientVitalSign> signs;
 }

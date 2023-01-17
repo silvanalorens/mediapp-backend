@@ -33,6 +33,6 @@ public class PatientDTO {
     @Email
     private String email;
 
- //   @JsonManagedReference
- //   private List<PatientVitalSignDTO> signs;
+   @JsonManagedReference
+   private List<PatientVitalSignDTO> signs;
 }

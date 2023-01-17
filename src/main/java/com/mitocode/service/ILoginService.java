@@ -6,4 +6,6 @@ public interface ILoginService {
 
     User checkUsername(String username);
     void changePassword(String password, String username);
+
+    User findPerfil(String username);
 }
