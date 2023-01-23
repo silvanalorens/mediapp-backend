@@ -35,5 +35,6 @@ public class PatientVitalSignDTO {
 
 
     @JsonBackReference
+
     private PatientDTO patient;
 }

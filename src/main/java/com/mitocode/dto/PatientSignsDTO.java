@@ -36,5 +36,11 @@ public class PatientSignsDTO {
 
     private String patientLastName;
 
+    private String patientDni;
+    private String patientAddress;
+    private String patientPhone;
+    private String patientEmail;
+
+
 
 }

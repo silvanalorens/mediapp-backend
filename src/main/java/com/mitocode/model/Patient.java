@@ -1,6 +1,7 @@
 package com.mitocode.model;
 
 import lombok.*;
+import net.minidev.json.annotate.JsonIgnore;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -41,6 +42,7 @@ public class Patient {
     private String email;
 
     //@Column(nullable = true)
+
     @OneToMany(mappedBy = "patient", cascade = {CascadeType.ALL}, orphanRemoval = true,fetch = FetchType.EAGER) //,,
     @Fetch(value = FetchMode.SUBSELECT)
     private List<PatientVitalSign> signs;

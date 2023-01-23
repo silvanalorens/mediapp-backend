@@ -12,4 +12,6 @@ import java.util.List;
 public interface IPatientSignService  extends ICRUD<PatientVitalSign, Integer>  {
     List<PatientVitalSign> getSignsByPatientId(Integer idPatient);
     Page<PatientVitalSign> listPage(Pageable pageable);
+
+    public PatientVitalSign save(PatientVitalSign t);
 }

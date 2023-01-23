@@ -10,6 +10,7 @@ import com.mitocode.exception.ModelNotFoundException;
 import com.mitocode.model.Patient;
 import com.mitocode.model.PatientVitalSign;
 
+import com.mitocode.service.IPatientService;
 import com.mitocode.service.IPatientSignService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
@@ -41,13 +42,16 @@ public class PatientVitalSignController {
 
     @Autowired
     private IPatientSignService serviceSigns;
+
+    @Autowired
+    private IPatientService servicePatients;
     @Autowired
     private ModelMapper mapper;
 
     @GetMapping
     public ResponseEntity<List<PatientSignsDTO>> findAll(){
 
-        //con mapper
+                //con mapper
 
         List<PatientSignsDTO> list = serviceSigns.findAll().stream().map(
                 p -> mapper.map(p, PatientSignsDTO.class)
@@ -58,15 +62,40 @@ public class PatientVitalSignController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PatientVitalSignDTO> findById(@PathVariable("id") Integer id){
+    public ResponseEntity<PatientSignsDTO> findById(@PathVariable("id") Integer id){
+
+
         PatientVitalSign obj = serviceSigns.findById(id);
 
         if(obj == null){
             throw new ModelNotFoundException("ID NOT FOUND: " + id);
         }
-        return new ResponseEntity<>(mapper.map(obj, PatientVitalSignDTO.class), HttpStatus.OK);
+
+        return new ResponseEntity<>(mapper.map(obj, PatientSignsDTO.class), HttpStatus.OK);
+
+
+
+
     }
 
+    @GetMapping("/parent/{id}")
+    public ResponseEntity<PatientDTO> findParentById(@PathVariable("id") Integer id){
+
+
+        PatientVitalSign obj = serviceSigns.findById(id);
+
+        if(obj == null){
+            throw new ModelNotFoundException("ID NOT FOUND: " + id);
+        }
+        Patient patient = servicePatients.findById(obj.getPatient().getIdPatient());
+
+        PatientDTO patientDTO = mapper.map(patient, PatientDTO.class);
+
+        return new ResponseEntity<>(patientDTO, HttpStatus.OK);
+
+
+
+    }
 
 
     @PostMapping

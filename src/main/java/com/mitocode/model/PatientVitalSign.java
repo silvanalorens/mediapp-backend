@@ -1,6 +1,7 @@
 package com.mitocode.model;
 
 import lombok.*;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -31,7 +32,9 @@ public class PatientVitalSign {
     @Column(nullable = false)
     private String respiratory;
 
-    @ManyToOne //(fetch = FetchType.EAGER)
+    @ManyToOne//(fetch = FetchType.EAGER)
+    @JsonIgnore
     @JoinColumn(name = "id_patient", nullable = false, foreignKey = @ForeignKey(name = "FK_PATIENT_SIGN"))
+
     private Patient patient;
 }

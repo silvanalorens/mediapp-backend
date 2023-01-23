@@ -37,5 +37,9 @@ public class PatientSignServiceImpl extends CRUDImpl<PatientVitalSign, Integer> 
 
         return repo.findAll();
     }
+    @Override
+    public PatientVitalSign save(PatientVitalSign t) {
+        return repo.save(t);
+    }
 }
 
