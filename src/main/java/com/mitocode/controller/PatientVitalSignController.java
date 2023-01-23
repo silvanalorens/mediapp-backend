@@ -113,6 +113,8 @@ public class PatientVitalSignController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Integer id){
+        System.out.println("delete");
+        System.out.println(id);
         PatientVitalSign obj = serviceSigns.findById(id);
 
         if(obj == null){
