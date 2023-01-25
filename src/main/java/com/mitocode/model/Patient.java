@@ -41,9 +41,4 @@ public class Patient {
     @Column(length = 55, nullable = false)
     private String email;
 
-    //@Column(nullable = true)
-
-    @OneToMany(mappedBy = "patient", cascade = {CascadeType.ALL}, orphanRemoval = true,fetch = FetchType.EAGER) //,,
-    @Fetch(value = FetchMode.SUBSELECT)
-    private List<PatientVitalSign> signs;
 }
