@@ -134,13 +134,6 @@ public class ConsultController {
         return new ResponseEntity<>(consults, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/generateReport", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-    //MediaType.APPLICATION_PDF_VALUE
-    public ResponseEntity<byte[]> generateReport() throws Exception {
-        byte[] data = service.generateReport();
-        return new ResponseEntity<>(data, HttpStatus.OK);
-    }
-
     @PostMapping(value = "/saveFile", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> saveFile(@RequestParam("file") MultipartFile file) throws Exception { //@RequestPart("medic")Medic medic
         MediaFile mf = new MediaFile();
@@ -167,9 +160,5 @@ public class ConsultController {
         this.service = service;
     }*/
 
-    /*@GetMapping
-    public String sayHello(){
-        //Consult consult = new Consult(1, "mitocode");
-        return service.sayHello(null);
-    }*/
+
 }

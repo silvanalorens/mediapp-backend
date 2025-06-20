@@ -8,10 +8,7 @@ import com.mitocode.repo.IConsultExamRepo;
 import com.mitocode.repo.IConsultRepo;
 import com.mitocode.repo.IGenericRepo;
 import com.mitocode.service.IConsultService;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
@@ -74,17 +71,4 @@ public class ConsultServiceImpl extends CRUDImpl<Consult, Integer> implements IC
         return consults;
     }
 
-    @Override
-    public byte[] generateReport() throws Exception {
-        byte[] data = null;
-
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("txt_title", "Report Title");
-
-        File file = new ClassPathResource("/reports/consultas.jasper").getFile();
-        JasperPrint print = JasperFillManager.fillReport(file.getPath(), parameters, new JRBeanCollectionDataSource(callProcedureOrFunction()));
-        data = JasperExportManager.exportReportToPdf(print);
-
-        return data;
-    }
 }

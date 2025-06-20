@@ -15,7 +15,5 @@ public interface IConsultService extends ICRUD<Consult, Integer>{
 
     List<ConsultProcDTO> callProcedureOrFunction();
 
-    byte[] generateReport() throws Exception;
-
 
 }

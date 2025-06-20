@@ -47,12 +47,6 @@ public class ExamController {
         return new ResponseEntity<>(mapper.map(obj, ExamDTO.class), HttpStatus.OK);
     }
 
-    /*@PostMapping
-    public ResponseEntity<Exam> save(@RequestBody Exam exam){
-        Exam obj = service.save(exam);
-        return new ResponseEntity<>(obj, HttpStatus.CREATED);
-    }*/
-
     @PostMapping
     public ResponseEntity<Void> save(@Valid @RequestBody ExamDTO dto){
         Exam obj = service.save(mapper.map(dto, Exam.class));
@@ -94,14 +88,4 @@ public class ExamController {
     }
 
 
-
-    /*public ExamController(ExamService service){
-        this.service = service;
-    }*/
-
-    /*@GetMapping
-    public String sayHello(){
-        //Exam exam = new Exam(1, "mitocode");
-        return service.sayHello(null);
-    }*/
 }
