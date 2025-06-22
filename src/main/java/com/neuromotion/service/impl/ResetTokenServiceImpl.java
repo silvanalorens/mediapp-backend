@@ -1,0 +1,30 @@
+package com.neuromotion.service.impl;
+
+import com.neuromotion.model.ResetToken;
+import com.neuromotion.repo.IResetTokenRepo;
+import com.neuromotion.service.IResetTokenService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ResetTokenServiceImpl implements IResetTokenService {
+
+    @Autowired
+    private IResetTokenRepo repo;
+
+    @Override
+    public ResetToken findByToken(String token) {
+        return repo.findByToken(token);
+    }
+
+    @Override
+    public void save(ResetToken token) {
+        repo.save(token);
+    }
+
+    @Override
+    public void delete(ResetToken token) {
+        repo.delete(token);
+    }
+
+}

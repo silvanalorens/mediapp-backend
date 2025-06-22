@@ -8,12 +8,12 @@
         <version>2.7.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.mitocode</groupId>
+    <groupId>com.neuromotion</groupId>
     <artifactId>mediapp-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>mediapp-backend</name>
     <description>mediapp-backend</description>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
 
     <properties>

@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mediapp-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mediapp-backend
+  template:
+    metadata:
+      labels:
+        app: mediapp-backend
+    spec:
+      containers:
+        - name: mediapp-backend
+          image: mediapp-backend:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: POSTGRES_USER
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: POSTGRES_DB
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_PASSWORD
+            # JWT no sensible
+            - name: SECURITY_JWT_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: CLIENT_ID
+            - name: SECURITY_JWT_SCOPE_READ
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: SCOPE_READ
+            - name: SECURITY_JWT_SCOPE_WRITE
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: SCOPE_WRITE
+            - name: SECURITY_JWT_RESOURCE_IDS
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: RESOURCE_IDS
