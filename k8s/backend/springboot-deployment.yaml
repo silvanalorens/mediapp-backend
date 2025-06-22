@@ -14,10 +14,20 @@ spec:
     spec:
       containers:
         - name: mediapp-backend
-          image: mediapp-backend:latest
+          image: silvanalorens/mediapp-backend:latest
           ports:
             - containerPort: 8080
           env:
+            - name: SIGNING_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: SIGNING_KEY
+            - name: CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: CLIENT_SECRET
             - name: POSTGRES_USER
               valueFrom:
                 configMapKeyRef:
