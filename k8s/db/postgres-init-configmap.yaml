@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-init-script
+data:
+  init.sql: |
+    CREATE USER postgres WITH PASSWORD 'pgsasa';
+    CREATE DATABASE mediapp17;
+    GRANT ALL PRIVILEGES ON DATABASE mediapp17 TO postgres;
