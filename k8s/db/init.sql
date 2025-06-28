@@ -507,3 +507,22 @@ inner join menu m on m.id_menu = mr.id_menu
 inner join user_data u on u.id_user = ur.id_user
 where u.username = 'mitocode21@gmail.com';
 
+INSERT INTO specialty (id_specialty, name, description) VALUES  (1, 'Cardiología', 'Especialidad en enfermedades del corazón'),
+
+                                                            (2, 'Neurología', 'Especialidad en el sistema nervioso'),
+
+                                                            (3, 'Pediatría', 'Atención médica para niños'),
+
+                                                            (4, 'Dermatología', 'Tratamiento de enfermedades de la piel');
+
+INSERT INTO medic (id_medic, cmp, first_name, last_name, photo_url) VALUES (1, 'CMP001', 'Juan', 'Pérez', 'https://via.placeholder.com/150'),
+
+                                                                        (2, 'CMP002', 'Ana', 'García', 'https://via.placeholder.com/150');
+
+INSERT INTO patient (id_patient, dni, first_name, last_name, phone, address, email) VALUES
+
+                                                                                        (1, '12345678', 'Carlos', 'Ramírez', '999111222', 'Av. Siempre Viva 123', 'carlos@example.com'),
+
+                                                                                        (2, '87654321', 'María', 'Lopez', '999333444', 'Calle Luna 456', 'maria@example.com');
+INSERT INTO public.exam(id_exam, description, name) VALUES (1, 'Debe estar en ayunas', 'SANGRE');
+INSERT INTO public.exam(id_exam, description, name) VALUES (2, 'Tomar un litro de agua', 'ECOGRAFIA');
