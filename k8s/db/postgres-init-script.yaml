@@ -1,0 +1,193 @@
+apiVersion: v1
+data:
+  init.sql: "\r\nCREATE TABLE public.consult (\r\n    id_consult integer NOT NULL,\r\n
+    \   consult_date timestamp without time zone NOT NULL,\r\n    num_consult character
+    varying(3) NOT NULL,\r\n    id_medic integer NOT NULL,\r\n    id_patient integer
+    NOT NULL,\r\n    id_specialty integer NOT NULL\r\n);\r\n\r\n\r\nALTER TABLE public.consult
+    OWNER TO postgres;\r\n\r\n\r\nCREATE TABLE public.consult_detail (\r\n    id_detail
+    integer NOT NULL,\r\n    diagnosis character varying(70) NOT NULL,\r\n    treatment
+    character varying(300) NOT NULL,\r\n    id_consult integer NOT NULL\r\n);\r\n\r\n\r\nALTER
+    TABLE public.consult_detail OWNER TO postgres;\r\n\r\n\r\nCREATE SEQUENCE public.consult_detail_id_detail_seq\r\n
+    \   AS integer\r\n    START WITH 1\r\n    INCREMENT BY 1\r\n    NO MINVALUE\r\n
+    \   NO MAXVALUE\r\n    CACHE 1;\r\n\r\n\r\nALTER TABLE public.consult_detail_id_detail_seq
+    OWNER TO postgres;\r\n\r\n\r\nALTER SEQUENCE public.consult_detail_id_detail_seq
+    OWNED BY public.consult_detail.id_detail;\r\n\r\n\r\n\r\nCREATE TABLE public.consult_exam
+    (\r\n    id_consult integer NOT NULL,\r\n    id_exam integer NOT NULL\r\n);\r\n\r\n\r\nALTER
+    TABLE public.consult_exam OWNER TO postgres;\r\n\r\n\r\nCREATE SEQUENCE public.consult_id_consult_seq\r\n
+    \   AS integer\r\n    START WITH 1\r\n    INCREMENT BY 1\r\n    NO MINVALUE\r\n
+    \   NO MAXVALUE\r\n    CACHE 1;\r\n\r\n\r\nALTER TABLE public.consult_id_consult_seq
+    OWNER TO postgres;\r\n\r\n\r\nALTER SEQUENCE public.consult_id_consult_seq OWNED
+    BY public.consult.id_consult;\r\n\r\n\r\n\r\nCREATE TABLE public.exam (\r\n    id_exam
+    integer NOT NULL,\r\n    description character varying(100) NOT NULL,\r\n    name
+    character varying(50) NOT NULL\r\n);\r\n\r\n\r\nALTER TABLE public.exam OWNER
+    TO postgres;\r\n\r\n\r\nCREATE SEQUENCE public.exam_id_exam_seq\r\n    AS integer\r\n
+    \   START WITH 1\r\n    INCREMENT BY 1\r\n    NO MINVALUE\r\n    NO MAXVALUE\r\n
+    \   CACHE 1;\r\n\r\n\r\nALTER TABLE public.exam_id_exam_seq OWNER TO postgres;\r\n\r\n\r\nALTER
+    SEQUENCE public.exam_id_exam_seq OWNED BY public.exam.id_exam;\r\n\r\n\r\n\r\nCREATE
+    TABLE public.media_file (\r\n    id_file integer NOT NULL,\r\n    filename character
+    varying(50) NOT NULL,\r\n    filetype character varying(20) NOT NULL,\r\n    content
+    bytea NOT NULL\r\n);\r\n\r\n\r\nALTER TABLE public.media_file OWNER TO postgres;\r\n\r\n\r\nCREATE
+    SEQUENCE public.media_file_id_file_seq\r\n    AS integer\r\n    START WITH 1\r\n
+    \   INCREMENT BY 1\r\n    NO MINVALUE\r\n    NO MAXVALUE\r\n    CACHE 1;\r\n\r\n\r\nALTER
+    TABLE public.media_file_id_file_seq OWNER TO postgres;\r\n\r\n\r\nALTER SEQUENCE
+    public.media_file_id_file_seq OWNED BY public.media_file.id_file;\r\n\r\n\r\n\r\nCREATE
+    TABLE public.medic (\r\n    id_medic integer NOT NULL,\r\n    cmp character varying(12)
+    NOT NULL,\r\n    first_name character varying(70) NOT NULL,\r\n    last_name character
+    varying(70) NOT NULL,\r\n    photo_url character varying(255)\r\n);\r\n\r\n\r\nALTER
+    TABLE public.medic OWNER TO postgres;\r\n\r\n\r\nCREATE SEQUENCE public.medic_id_medic_seq\r\n
+    \   AS integer\r\n    START WITH 1\r\n    INCREMENT BY 1\r\n    NO MINVALUE\r\n
+    \   NO MAXVALUE\r\n    CACHE 1;\r\n\r\n\r\nALTER TABLE public.medic_id_medic_seq
+    OWNER TO postgres;\r\n\r\n\r\nALTER SEQUENCE public.medic_id_medic_seq OWNED BY
+    public.medic.id_medic;\r\n\r\n\r\nCREATE TABLE public.menu (\r\n    id_menu integer
+    NOT NULL,\r\n    icon character varying(20) NOT NULL,\r\n    name character varying(20)
+    NOT NULL,\r\n    url character varying(50) NOT NULL\r\n);\r\n\r\n\r\nALTER TABLE
+    public.menu OWNER TO postgres;\r\n\r\nCREATE TABLE public.menu_role (\r\n    id_menu
+    integer NOT NULL,\r\n    id_role integer NOT NULL\r\n);\r\n\r\n\r\nALTER TABLE
+    public.menu_role OWNER TO postgres;\r\n\r\n\r\nCREATE TABLE public.oauth_access_token
+    (\r\n    token_id character varying(256),\r\n    token bytea,\r\n    authentication_id
+    character varying(256),\r\n    user_name character varying(256),\r\n    client_id
+    character varying(256),\r\n    authentication bytea,\r\n    refresh_token character
+    varying(256)\r\n);\r\n\r\n\r\nALTER TABLE public.oauth_access_token OWNER TO postgres;\r\n\r\n\r\nCREATE
+    TABLE public.patient (\r\n    id_patient integer NOT NULL,\r\n    address character
+    varying(150),\r\n    dni character varying(8) NOT NULL,\r\n    email character
+    varying(20),\r\n    first_name character varying(70) NOT NULL,\r\n    last_name
+    character varying(70) NOT NULL,\r\n    phone character varying(9) NOT NULL\r\n);\r\n\r\n\r\nALTER
+    TABLE public.patient OWNER TO postgres;\r\n\r\n\r\nCREATE SEQUENCE public.patient_id_patient_seq\r\n
+    \   AS integer\r\n    START WITH 1\r\n    INCREMENT BY 1\r\n    NO MINVALUE\r\n
+    \   NO MAXVALUE\r\n    CACHE 1;\r\n\r\n\r\nALTER TABLE public.patient_id_patient_seq
+    OWNER TO postgres;\r\n\r\n\r\nALTER SEQUENCE public.patient_id_patient_seq OWNED
+    BY public.patient.id_patient;\r\n\r\n\r\nCREATE TABLE public.patient_vital_sign
+    (\r\n    id_vital_sign integer NOT NULL,\r\n    pulse character varying(255) NOT
+    NULL,\r\n    respiratory character varying(255) NOT NULL,\r\n    sign_date timestamp
+    without time zone NOT NULL,\r\n    temperature character varying(255) NOT NULL,\r\n
+    \   id_patient integer NOT NULL\r\n);\r\n\r\n\r\nALTER TABLE public.patient_vital_sign
+    OWNER TO postgres;\r\n\r\n\r\nCREATE SEQUENCE public.patient_vital_sign_id_vital_sign_seq\r\n
+    \   AS integer\r\n    START WITH 1\r\n    INCREMENT BY 1\r\n    NO MINVALUE\r\n
+    \   NO MAXVALUE\r\n    CACHE 1;\r\n\r\n\r\nALTER TABLE public.patient_vital_sign_id_vital_sign_seq
+    OWNER TO postgres;\r\n\r\n\r\nALTER SEQUENCE public.patient_vital_sign_id_vital_sign_seq
+    OWNED BY public.patient_vital_sign.id_vital_sign;\r\n\r\n\r\n\r\nCREATE TABLE
+    public.reset_token (\r\n    id integer NOT NULL,\r\n    expiration timestamp without
+    time zone NOT NULL,\r\n    token character varying(255) NOT NULL,\r\n    id_user
+    integer NOT NULL\r\n);\r\n\r\n\r\nALTER TABLE public.reset_token OWNER TO postgres;\r\n\r\n\r\nCREATE
+    SEQUENCE public.reset_token_id_seq\r\n    AS integer\r\n    START WITH 1\r\n    INCREMENT
+    BY 1\r\n    NO MINVALUE\r\n    NO MAXVALUE\r\n    CACHE 1;\r\n\r\n\r\nALTER TABLE
+    public.reset_token_id_seq OWNER TO postgres;\r\n\r\n\r\nALTER SEQUENCE public.reset_token_id_seq
+    OWNED BY public.reset_token.id;\r\n\r\n\r\nCREATE TABLE public.role (\r\n    id_role
+    integer NOT NULL,\r\n    description character varying(100) NOT NULL,\r\n    name
+    character varying(50) NOT NULL\r\n);\r\n\r\n\r\nALTER TABLE public.role OWNER
+    TO postgres;\r\n\r\n\r\nCREATE TABLE public.specialty (\r\n    id_specialty integer
+    NOT NULL,\r\n    description character varying(100) NOT NULL,\r\n    name character
+    varying(50) NOT NULL\r\n);\r\n\r\n\r\nALTER TABLE public.specialty OWNER TO postgres;\r\n\r\n\r\nCREATE
+    SEQUENCE public.specialty_id_specialty_seq\r\n    AS integer\r\n    START WITH
+    1\r\n    INCREMENT BY 1\r\n    NO MINVALUE\r\n    NO MAXVALUE\r\n    CACHE 1;\r\n\r\n\r\nALTER
+    TABLE public.specialty_id_specialty_seq OWNER TO postgres;\r\n\r\n\r\nALTER SEQUENCE
+    public.specialty_id_specialty_seq OWNED BY public.specialty.id_specialty;\r\n\r\n\r\n\r\nCREATE
+    TABLE public.user_data (\r\n    id_user integer NOT NULL,\r\n    password character
+    varying(60) NOT NULL,\r\n    username character varying(60) NOT NULL,\r\n    enabled
+    boolean NOT NULL\r\n);\r\n\r\n\r\nALTER TABLE public.user_data OWNER TO postgres;\r\n\r\n\r\nCREATE
+    TABLE public.user_role (\r\n    id_user integer NOT NULL,\r\n    id_role integer
+    NOT NULL\r\n);\r\n\r\n\r\nALTER TABLE public.user_role OWNER TO postgres;\r\n\r\n\r\nALTER
+    TABLE ONLY public.consult ALTER COLUMN id_consult SET DEFAULT nextval('public.consult_id_consult_seq'::regclass);\r\n\r\n\r\n\r\nALTER
+    TABLE ONLY public.consult_detail ALTER COLUMN id_detail SET DEFAULT nextval('public.consult_detail_id_detail_seq'::regclass);\r\n\r\n\r\n\r\nALTER
+    TABLE ONLY public.exam ALTER COLUMN id_exam SET DEFAULT nextval('public.exam_id_exam_seq'::regclass);\r\n\r\n\r\n\r\nALTER
+    TABLE ONLY public.media_file ALTER COLUMN id_file SET DEFAULT nextval('public.media_file_id_file_seq'::regclass);\r\n\r\n\r\n\r\nALTER
+    TABLE ONLY public.medic ALTER COLUMN id_medic SET DEFAULT nextval('public.medic_id_medic_seq'::regclass);\r\n\r\n\r\nALTER
+    TABLE ONLY public.patient ALTER COLUMN id_patient SET DEFAULT nextval('public.patient_id_patient_seq'::regclass);\r\n\r\n\r\nALTER
+    TABLE ONLY public.patient_vital_sign ALTER COLUMN id_vital_sign SET DEFAULT nextval('public.patient_vital_sign_id_vital_sign_seq'::regclass);\r\n\r\n\r\nALTER
+    TABLE ONLY public.reset_token ALTER COLUMN id SET DEFAULT nextval('public.reset_token_id_seq'::regclass);\r\n\r\n\r\nALTER
+    TABLE ONLY public.specialty ALTER COLUMN id_specialty SET DEFAULT nextval('public.specialty_id_specialty_seq'::regclass);\r\n\r\n\r\nALTER
+    TABLE ONLY public.consult_detail\r\n    ADD CONSTRAINT consult_detail_pkey PRIMARY
+    KEY (id_detail);\r\n\r\n\r\n\r\nALTER TABLE ONLY public.consult_exam\r\n    ADD
+    CONSTRAINT consult_exam_pkey PRIMARY KEY (id_consult, id_exam);\r\n\r\n\r\nALTER
+    TABLE ONLY public.consult\r\n    ADD CONSTRAINT consult_pkey PRIMARY KEY (id_consult);\r\n\r\nALTER
+    TABLE ONLY public.exam\r\n    ADD CONSTRAINT exam_pkey PRIMARY KEY (id_exam);\r\n\r\nALTER
+    TABLE ONLY public.media_file\r\n    ADD CONSTRAINT media_file_pkey PRIMARY KEY
+    (id_file);\r\n\r\n\r\nALTER TABLE ONLY public.medic\r\n    ADD CONSTRAINT medic_pkey
+    PRIMARY KEY (id_medic);\r\n\r\n\r\nALTER TABLE ONLY public.menu\r\n    ADD CONSTRAINT
+    menu_pkey PRIMARY KEY (id_menu);\r\n\r\n\r\nALTER TABLE ONLY public.patient\r\n
+    \   ADD CONSTRAINT patient_pkey PRIMARY KEY (id_patient);\r\n\r\n\r\nALTER TABLE
+    ONLY public.patient_vital_sign\r\n    ADD CONSTRAINT patient_vital_sign_pkey PRIMARY
+    KEY (id_vital_sign);\r\n\r\n\r\nALTER TABLE ONLY public.reset_token\r\n    ADD
+    CONSTRAINT reset_token_pkey PRIMARY KEY (id);\r\n\r\n\r\nALTER TABLE ONLY public.role\r\n
+    \   ADD CONSTRAINT role_pkey PRIMARY KEY (id_role);\r\n\r\n\r\nALTER TABLE ONLY
+    public.specialty\r\n    ADD CONSTRAINT specialty_pkey PRIMARY KEY (id_specialty);\r\n\r\n\r\nALTER
+    TABLE ONLY public.user_data\r\n    ADD CONSTRAINT uk_nlc4atex50p892vsfhwccm336
+    UNIQUE (username);\r\n\r\n\r\nALTER TABLE ONLY public.reset_token\r\n    ADD CONSTRAINT
+    uk_shiutqgqq3m7hdrlmckbk4am6 UNIQUE (token);\r\n\r\n\r\nALTER TABLE ONLY public.user_data\r\n
+    \   ADD CONSTRAINT user_data_pkey PRIMARY KEY (id_user);\r\n\r\n\r\nALTER TABLE
+    ONLY public.user_role\r\n    ADD CONSTRAINT fk2aam9nt2tv8vcfymi3jo9c314 FOREIGN
+    KEY (id_role) REFERENCES public.role(id_role);\r\n\r\n\r\nALTER TABLE ONLY public.menu_role\r\n
+    \   ADD CONSTRAINT fk2ymscnycm83uqu1ddpkgdryg1 FOREIGN KEY (id_menu) REFERENCES
+    public.menu(id_menu);\r\n\r\n\r\nALTER TABLE ONLY public.consult_exam\r\n    ADD
+    CONSTRAINT fk591nrrtt1rqpma2ax5f0u1rr FOREIGN KEY (id_consult) REFERENCES public.consult(id_consult);\r\n\r\n\r\nALTER
+    TABLE ONLY public.user_role\r\n    ADD CONSTRAINT fk9qphm07p6th93qb8p9fnykvwo
+    FOREIGN KEY (id_user) REFERENCES public.user_data(id_user);\r\n\r\n\r\nALTER TABLE
+    ONLY public.consult_detail\r\n    ADD CONSTRAINT fk_consult_detail FOREIGN KEY
+    (id_consult) REFERENCES public.consult(id_consult);\r\n\r\n\r\n\r\nALTER TABLE
+    ONLY public.consult\r\n    ADD CONSTRAINT fk_consult_medic FOREIGN KEY (id_medic)
+    REFERENCES public.medic(id_medic);\r\n\r\n\r\n\r\nALTER TABLE ONLY public.consult\r\n
+    \   ADD CONSTRAINT fk_consult_patient FOREIGN KEY (id_patient) REFERENCES public.patient(id_patient);\r\n\r\n\r\nALTER
+    TABLE ONLY public.consult\r\n    ADD CONSTRAINT fk_consult_specialty FOREIGN KEY
+    (id_specialty) REFERENCES public.specialty(id_specialty);\r\n\r\n\r\nALTER TABLE
+    ONLY public.patient_vital_sign\r\n    ADD CONSTRAINT fk_patient_sign FOREIGN KEY
+    (id_patient) REFERENCES public.patient(id_patient);\r\n\r\n\r\nALTER TABLE ONLY
+    public.menu_role\r\n    ADD CONSTRAINT fkbhl7xy7xjv54q9vedxuxk2kn0 FOREIGN KEY
+    (id_role) REFERENCES public.role(id_role);\r\n\r\n\r\n\r\nALTER TABLE ONLY public.consult_exam\r\n
+    \   ADD CONSTRAINT fkjmghcc7tn12i5uav4lisb127t FOREIGN KEY (id_exam) REFERENCES
+    public.exam(id_exam);\r\n\r\n\r\nALTER TABLE ONLY public.reset_token\r\n    ADD
+    CONSTRAINT fkqtbrpfn6lfgmabbsqn3cv8u9g FOREIGN KEY (id_user) REFERENCES public.user_data(id_user);\r\n\r\n\r\n\r\n\r\nINSERT
+    INTO Role (id_role, name, description) VALUES (1, 'ADMIN', 'Administrador');\r\nINSERT
+    INTO Role (id_role, name, description) VALUES (2, 'USER', 'Usuario');\r\nINSERT
+    INTO Role (id_role, name, description) VALUES (3, 'DBA', 'Admin de bd');\r\n\r\n\r\nINSERT
+    INTO user_data(id_user, username, password, enabled) values (1, 'mitotest21@gmail.com',
+    '$2a$10$ju20i95JTDkRa7Sua63JWOChSBc0MNFtG/6Sps2ahFFqN.HCCUMW.', '1');\r\nINSERT
+    INTO user_data(id_user, username, password, enabled) values (2, 'mitocode21@gmail.com',
+    '$2a$10$ju20i95JTDkRa7Sua63JWOChSBc0MNFtG/6Sps2ahFFqN.HCCUMW.', '1');\r\n\r\n\r\nINSERT
+    INTO user_role (id_user, id_role) VALUES (1, 1);\r\nINSERT INTO user_role (id_user,
+    id_role) VALUES (1, 3);\r\nINSERT INTO user_role (id_user, id_role) VALUES (2,
+    2);\r\n\r\n\r\nINSERT INTO menu(id_menu, name, icon, url) VALUES (1, 'Dashboard',
+    'home', '/pages/dashboard');\r\nINSERT INTO menu(id_menu, name, icon, url) VALUES
+    (2, 'Search', 'search', '/pages/search');\r\nINSERT INTO menu(id_menu, name, icon,
+    url) VALUES (3, 'Consult', 'insert_drive_file', '/pages/consult');\r\nINSERT INTO
+    menu(id_menu, name, icon, url) VALUES (4, 'Consult Autocomplete', 'insert_drive_file',
+    '/pages/consult-autocomplete');\r\nINSERT INTO menu(id_menu, name, icon, url)
+    VALUES (5, 'Consult Wizard', 'view_carousel', '/pages/consult-wizard');\r\nINSERT
+    INTO menu(id_menu, name, icon, url) VALUES (6, 'Specialties', 'star_rate', '/pages/specialty');\r\nINSERT
+    INTO menu(id_menu, name, icon, url) VALUES (7, 'Medics', 'healing', '/pages/medic');\r\nINSERT
+    INTO menu(id_menu, name, icon, url) VALUES (8, 'Exams', 'assignment', '/pages/exam');\r\nINSERT
+    INTO menu(id_menu, name, icon, url) VALUES (9, 'Patients', 'accessibility', '/pages/patient');\r\nINSERT
+    INTO menu(id_menu, name, icon, url) VALUES (10, 'Reports', 'assessment', '/pages/report');\r\n\r\nINSERT
+    INTO menu_role (id_menu, id_role) VALUES (1, 1);\r\nINSERT INTO menu_role (id_menu,
+    id_role) VALUES (2, 1);\r\nINSERT INTO menu_role (id_menu, id_role) VALUES (3,
+    1);\r\nINSERT INTO menu_role (id_menu, id_role) VALUES (4, 1);\r\nINSERT INTO
+    menu_role (id_menu, id_role) VALUES (5, 1);\r\nINSERT INTO menu_role (id_menu,
+    id_role) VALUES (6, 1);\r\nINSERT INTO menu_role (id_menu, id_role) VALUES (7,
+    1);\r\nINSERT INTO menu_role (id_menu, id_role) VALUES (8, 1);\r\nINSERT INTO
+    menu_role (id_menu, id_role) VALUES (9, 1);\r\nINSERT INTO menu_role (id_menu,
+    id_role) VALUES (10, 1);\r\nINSERT INTO menu_role (id_menu, id_role) VALUES (1,
+    2);\r\nINSERT INTO menu_role (id_menu, id_role) VALUES (3, 2);\r\nINSERT INTO
+    menu_role (id_menu, id_role) VALUES (4, 2);\r\nINSERT INTO menu_role (id_menu,
+    id_role) VALUES (5, 2);\r\nINSERT INTO menu_role (id_menu, id_role) VALUES (6,
+    2);\r\n\r\nselect m.* from menu_role mr \r\ninner join user_role ur on ur.id_role
+    = mr.id_role \r\ninner join menu m on m.id_menu = mr.id_menu \r\ninner join user_data
+    u on u.id_user = ur.id_user\r\nwhere u.username = 'mitocode21@gmail.com';\r\n\r\nINSERT
+    INTO specialty (id_specialty, name, description) VALUES  (1, 'Cardiología', 'Especialidad
+    en enfermedades del corazón'),\r\n\r\n                                                            (2,
+    'Neurología', 'Especialidad en el sistema nervioso'),\r\n\r\n                                                            (3,
+    'Pediatría', 'Atención médica para niños'),\r\n\r\n                                                            (4,
+    'Dermatología', 'Tratamiento de enfermedades de la piel');\r\n\r\nINSERT INTO
+    medic (id_medic, cmp, first_name, last_name, photo_url) VALUES (1, 'CMP001', 'Juan',
+    'Pérez', 'https://via.placeholder.com/150'),\r\n\r\n                                                                        (2,
+    'CMP002', 'Ana', 'García', 'https://via.placeholder.com/150');\r\n\r\nINSERT INTO
+    patient (id_patient, dni, first_name, last_name, phone, address, email) VALUES\r\n\r\n
+    \                                                                                       (1,
+    '12345678', 'Carlos', 'Ramírez', '999111222', 'Av. Siempre Viva 123', 'carlos@example.com'),\r\n\r\n
+    \                                                                                       (2,
+    '87654321', 'María', 'Lopez', '999333444', 'Calle Luna 456', 'maria@example.com');\r\nINSERT
+    INTO public.exam(id_exam, description, name) VALUES (1, 'Debe estar en ayunas',
+    'SANGRE');\r\nINSERT INTO public.exam(id_exam, description, name) VALUES (2, 'Tomar
+    un litro de agua', 'ECOGRAFIA');"
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: postgres-init-script
